@@ -1,0 +1,22 @@
+{% extends "./base.html" %}
+
+{% block body %}
+
+{% if user.is_authenticated %}
+    {% if user.id == post.author.id or request.user.is_superuser %}
+        <h1> Edit post </h1>
+        <br>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-primary btn-sm">Update</button>
+        </form>
+    {% else %}
+        <h1> Nu ai voie </h1>
+    {% endif %}
+
+{% else %}
+    <h1> Nu ai voie </h1>
+{% endif %}
+
+{% endblock %}

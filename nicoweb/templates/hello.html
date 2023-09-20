@@ -1,0 +1,55 @@
+{% extends "./base.html" %}
+{% block title %}Home page
+        {% endblock %}
+{% block head %}
+<title>Home</title>
+{% endblock %}
+
+{% block body %}
+
+<h1>heeeesdkdsdasdasdsaaaaaaaaaaaaaaaaaaaaaaasdoasdas</h1>
+
+{% if request.user.is_superuser %}
+<a href="{% url 'admin:index' %}">Admin</a>
+
+{% endif %}
+
+{% if user.is_authenticated %}
+    <a href="{% url 'logout' %}">Logout</a>
+    {% if user.id == post.author.id or request.user.is_superuser %}
+        <a href="{% url 'addpost' %}">Add Post</a>
+        <a href="{% url 'addcategory' %}">Add Category</a>
+        {% endif %}
+   
+{% else %}
+    <a href="{% url 'login' %}">login</a>
+    <a href="{% url 'register' %}">Register</a>
+{% endif %}
+<br><br>
+
+<ul>
+{% for post in object_list %}
+    <li> 
+        <a href="{% url 'article' pk=post.pk %}"> {{ post.title }} </a> :    
+        {{ post.author.first_name }} - 
+        {{ post.author.last_name }} - 
+        {{ post.category }} - 
+
+
+        {% if user.is_authenticated %}
+            {% if user.id == post.author.id or request.user.is_superuser %}
+                <a href="{% url 'editpost' pk=post.pk %}">Edit</a>
+                - <a href="{% url 'deletepost' pk=post.pk %}">Delete</a><br>
+                {% endif %}
+        {% endif %}
+    {{ post.author.email }} <br> {{ post.body|slice:":100"|safe }} </li>
+{% endfor %}
+</ul>
+
+
+
+{% endblock %}
+
+
+  
+

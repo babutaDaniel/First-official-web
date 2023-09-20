@@ -1,0 +1,23 @@
+{% extends "./base.html" %}
+
+{% block body %}
+
+{% if form.errors %}
+<p>A aparut o eroare</p>
+{% endif %}
+
+<h1>Register page test</h1>
+
+<form action="{% url 'register' %}" method="POST">
+    {% csrf_token %}
+    {{ form }}
+
+
+
+    <br>
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>
+
+
+{% endblock %}

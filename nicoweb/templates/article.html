@@ -1,0 +1,20 @@
+<h1>{{ post.title }}</h1>
+
+
+<small>Made by: {{ post.author.first_name }} 
+    {{ post.author.last_name }} 
+    
+    {% if user.is_authenticated %}
+        {% if user.id == post.author.id or request.user.is_superuser %}
+            <a href="{% url 'editpost' pk=post.pk %}">Edit</a> -
+            <a href="{% url 'deletepost' pk=post.pk %}">(Delete)</a><br></small>
+        {% endif %}
+     {% endif %}
+
+
+<br> {{ post.post_date }} <br>
+{{ post.body|safe }}
+<br>
+<a href="{% url 'home' %}">Back</a>
+
+
