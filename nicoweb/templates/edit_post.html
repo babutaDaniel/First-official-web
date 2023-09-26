@@ -6,8 +6,9 @@
     {% if user.id == post.author.id or request.user.is_superuser %}
         <h1> Edit post </h1>
         <br>
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
+            {{ form.media }}
             {{ form.as_p }}
             <button class="btn btn-primary btn-sm">Update</button>
         </form>

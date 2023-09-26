@@ -17,4 +17,9 @@
 <br>
 <a href="{% url 'home' %}">Back</a>
 
+<br>
+{% if post.upload_image %}
+<img src="{{ post.upload_image.url }}" width =500>
+{% endif %}
+
 
