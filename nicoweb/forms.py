@@ -9,13 +9,23 @@ for item in choices:
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title', 'title_tag', 'author','category', 'body')
-
+        fields = ('title', 'title_tag', 'author','category', 'body','upload_image','post_date')
+        labels = {
+            'title': '',
+            'title_tag': '',
+            'author':'' ,
+            'category': '',
+            'body': '',
+            'upload_image':'',
+            'post_date':'',
+        }
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'Put the title'}),
-            'title_tag': forms.TextInput(attrs={'class': 'form-control'}),
-            'author': forms.TextInput(attrs={'class': 'form-control', 'value':'', 'id':'user', 'type':'hidden' }),
+            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'Title'}),
+            'title_tag': forms.TextInput(attrs={'class': 'form-control','placeholder':'Title Tag'}),
+            'author': forms.TextInput(attrs={'class': 'form-control', 'value':'', 'id':'user', 'type':'hidden','placeholder':'author' }),
             #'author': forms.Select(attrs={'class': 'form-control'}),
-            'category': forms.Select(choices=choices_list, attrs={'class': 'form-control'}),
-            'body': forms.Textarea(attrs={'class': 'form-control'}),
+            'category': forms.Select(choices=choices_list, attrs={'class': 'form-control','placeholder':'Category'}),
+            'body': forms.Textarea(attrs={'class': 'form-control','placeholder':'About'}),
+            'upload_image':'',
+            'post_date':forms.TextInput(attrs={'type':'hidden','placeholder':'Post Date',}),
         }
