@@ -33,7 +33,7 @@
         <a href="{% url 'article' pk=post.pk %}"> {{ post.title }} </a> :    
         {{ post.author.first_name }} - 
         {{ post.author.last_name }} - 
-        {{ post.category }} - {{ post.post_date }}
+        {{ post.category }} - {{ post.post_date }} - 
 
         
         {% if user.is_authenticated %}
@@ -42,7 +42,7 @@
                 - <a href="{% url 'deletepost' pk=post.pk %}">Delete</a><br>
                 {% endif %}
         {% endif %}
-    {{ post.author.email }} <br> {{ post.body|slice:":100"|safe }} <br> {{ post.post_date }}  days ago </li>
+    {{ post.author.email }} <br> {{ post.body|slice:":100"|safe }} <br> {{ post.Days_posted }}  days ago </li>
 {% endfor %}
 </ul>
 

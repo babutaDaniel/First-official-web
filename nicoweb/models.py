@@ -20,7 +20,7 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     #body = models.TextField()
     body = RichTextField(blank=True, null=True)
-    post_date = models.DateField(default=datetime.now)
+    post_date = models.DateField(default=datetime.now())
     category = models.CharField(max_length=255)
     title_tag = models.CharField(max_length=30)
     upload_image = models.ImageField(null=True, blank=True, upload_to="images/")
@@ -32,10 +32,10 @@ class Post(models.Model):
         #return reverse('article', args=(str(self.id)) )    pagina cu postarea
         return reverse('home')
     
-    #@property
-    #def Days_posted(self):
-        #today = date.today()
-        #days = self.post_date.date()
-        #days_scripped = str(days).split(",",1)[0]
-       # return 41
+    @property
+    def Days_posted(self):
+        today = date.today()
+        days = today - self.post_date
+        days_scripped = str(days).split("d",1)[0]
+        return days_scripped
 

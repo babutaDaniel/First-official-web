@@ -27,5 +27,5 @@ class PostForm(forms.ModelForm):
             'category': forms.Select(choices=choices_list, attrs={'class': 'form-control','placeholder':'Category'}),
             'body': forms.Textarea(attrs={'class': 'form-control','placeholder':'About'}),
             'upload_image':'',
-            'post_date':forms.TextInput(attrs={'type':'hidden','placeholder':'Post Date',}),
+            'post_date':forms.TextInput(attrs={'placeholder':'Post Date',}),
         }
